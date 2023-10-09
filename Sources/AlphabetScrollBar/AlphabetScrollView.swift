@@ -76,7 +76,6 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
         cell(element)
       }
     }
-  }
   
   // View for displaying the collection as a Grid.
   @ViewBuilder
