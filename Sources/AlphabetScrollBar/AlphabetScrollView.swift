@@ -48,6 +48,7 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
   // Main body of the view.
   public var body: some View {
     ScrollViewReader { pageScroller in
+      VStack {
       Group {
         // Show the collection as a List.
         if collectionDisplayMode == .asList {
@@ -58,14 +59,12 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
           asGrid
         }
       }
-      .overlay {
         HStack {
           Spacer()
           // Show the section index titles based on the alphabet.
           SectionIndexTitles(alphabet: alphabet, selectedLetter: $selectedLetter, pageScroller: pageScroller, anchor: resultAnchor)
         }
       }
-      // Overlay the SectionIndexTitles for alphabetical indexing.
     }
   }
   
