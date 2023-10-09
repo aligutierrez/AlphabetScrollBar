@@ -21,7 +21,7 @@ struct SectionIndexTitles: View {
         Text(letter)
           .foregroundColor(.gray)                           
           .font(.system(size: 10).bold())
-          .frame(width: 30, height: 30)                          
+          .frame(width: 30, height: 25)                          
           .background(dragObserver(title: letter, anchor: anchor)) // Background modifier for tracking gestures.
       }
     }
