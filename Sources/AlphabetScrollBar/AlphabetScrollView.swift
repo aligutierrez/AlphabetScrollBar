@@ -47,7 +47,8 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
   
   // Main body of the view.
   public var body: some View {
-        ZStack {
+    GeometryReader { geometry in
+                   ZStack {
         ScrollViewReader { pageScroller in
             Group {
                 // Show the collection as a List.
@@ -63,12 +64,16 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
             HStack {
                 Spacer()
                 SectionIndexTitles(alphabet: alphabet, selectedLetter: $selectedLetter, pageScroller: pageScroller, anchor: resultAnchor)
-            }
-            .frame(maxWidth: .infinity,
+              .frame(maxWidth: 40,
                        maxHeight: .infinity,
                        alignment: .trailing)
+            }
+            .offset(x: geometry.size.width / 2 - 20, y: 0)              
+            
         }
     }
+                   }
+        
     
     // ScrollViewReader { pageScroller in
     //   Group {
