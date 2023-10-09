@@ -64,6 +64,9 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
                 Spacer()
                 SectionIndexTitles(alphabet: alphabet, selectedLetter: $selectedLetter, pageScroller: pageScroller, anchor: resultAnchor)
             }
+            .frame(maxWidth: .infinity,
+                       maxHeight: .infinity,
+                       alignment: .trailing)
         }
     }
     
