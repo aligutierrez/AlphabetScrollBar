@@ -72,10 +72,12 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
   // View for displaying the collection as a List.
   @ViewBuilder
   private var asList: some View {
+    List(groupedCollection, id: \.0) { section in
       ForEach(section.1) { element in
         cell(element)
       }
     }
+  }
   
   // View for displaying the collection as a Grid.
   @ViewBuilder
