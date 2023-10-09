@@ -46,34 +46,34 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
   @State private var selectedLetter = ""
   
   // Main body of the view.
-  public var body: some View {
-    GeometryReader { geometry in
-                   ZStack {
-        ScrollViewReader { pageScroller in
-            Group {
-                // Show the collection as a List.
-                if collectionDisplayMode == .asList {
-                    asList
+public var body: some View {
+    ScrollViewReader { pageScroller in
+        GeometryReader { geometry in
+            ZStack {
+                Group {
+                    // Show the collection as a List.
+                    if collectionDisplayMode == .asList {
+                        asList
+                    }
+                    // Show the collection as a Grid.
+                    else if collectionDisplayMode == .asGrid {
+                        asGrid
+                    }
                 }
-                // Show the collection as a Grid.
-                else if collectionDisplayMode == .asGrid {
-                    asGrid
+                
+                VStack {
+                    Spacer()
+                    SectionIndexTitles(alphabet: alphabet, selectedLetter: $selectedLetter, pageScroller: pageScroller, anchor: resultAnchor)
+                        .frame(maxWidth: 40,
+                               maxHeight: .infinity,
+                               alignment: .trailing)
                 }
+                .offset(x: geometry.size.width / 2 - 20, y: 0)
+                
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            HStack {
-                Spacer()
-                SectionIndexTitles(alphabet: alphabet, selectedLetter: $selectedLetter, pageScroller: pageScroller, anchor: resultAnchor)
-              .frame(maxWidth: 40,
-                       maxHeight: .infinity,
-                       alignment: .trailing)
-            }
-            .offset(x: geometry.size.width / 2 - 20, y: 0)              
-            
         }
     }
-                   }
-        
+    
     
     // ScrollViewReader { pageScroller in
     //   Group {
@@ -95,7 +95,7 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
     //     }
     //   }
     // }
-  }
+}
   
   // View for displaying the collection as a List.
     @ViewBuilder
