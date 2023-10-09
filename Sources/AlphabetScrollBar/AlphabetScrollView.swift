@@ -79,12 +79,19 @@ public var body: some View {
     @ViewBuilder
   private var asList: some View {
     List(groupedCollection, id: \.0) { section in
-      Text(section.0)
+      HStack {
+        Text(section.0)
         .id(section.0)
         .frame(maxWidth: .infinity, alignment: .leading)
         .font(sectionHeaderFont)
         .foregroundColor(sectionHeaderForegroundColor)
-                                      
+        
+        Divider()
+                .background(Color.gray)
+                .frame(height: 2)
+                .padding(.vertical)
+      }
+                
       ForEach(section.1) { element in
         cell(element)
       }
