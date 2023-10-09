@@ -59,6 +59,7 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
           asGrid
         }
       }
+      .overlay {
         HStack {
           Spacer()
           // Show the section index titles based on the alphabet.
