@@ -27,7 +27,7 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
   
   // Grouping the collection based on the first letter of each item.
   private var groupedCollection: [(String, [Element])] {
-    let sortedItems = collection.sorted { $0.name < $1.name }
+    let sortedItems = collection.sorted { $0.alphabetizableName < $1.alphabetizableName }
     let grouped = Dictionary(grouping: sortedItems) { String($0.name.prefix(1)) }
     
     return grouped.sorted { $0.0 < $1.0 }
