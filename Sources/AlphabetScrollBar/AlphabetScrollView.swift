@@ -59,13 +59,6 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
         }
       }
       // Overlay the SectionIndexTitles for alphabetical indexing.
-      .overlay {
-        HStack {
-          Spacer()
-          // Show the section index titles based on the alphabet.
-          SectionIndexTitles(alphabet: alphabet, selectedLetter: $selectedLetter, pageScroller: pageScroller, anchor: resultAnchor)
-        }
-      }
     }
   }
   
