@@ -1,5 +1,6 @@
 import SwiftUI
 
+
 struct SectionIndexTitles: View {
   
   // MARK: - Properties
@@ -18,8 +19,8 @@ struct SectionIndexTitles: View {
     VStack {
       ForEach(alphabet, id: \.self) { letter in
         Text(letter)
-          .font(.system(size: 12).bold())
-          .frame(width: 30)
+          .font(.system(size: 10).bold())
+          .frame(width: 30, height: 30)                          
           .background(dragObserver(title: letter, anchor: anchor)) // Background modifier for tracking gestures.
       }
     }
