@@ -31,10 +31,9 @@ struct SectionIndexTitles: View {
           state = value.location // Update the dragLocation with the current gesture location.
         }
     )
+    .background(Color.white)
     .animation(.spring(), value: selectedLetter) // Apply animation when selectedLetter changes.
     .padding(.trailing, 3)
-    .background(.white)
-    //.background(Color(.systemBackground).opacity(0.001)) // Transparent background.
   }
   
   // MARK: - Methods
