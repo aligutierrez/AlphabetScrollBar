@@ -73,28 +73,6 @@ public var body: some View {
             }
         }
     }
-    
-    
-    // ScrollViewReader { pageScroller in
-    //   Group {
-    //     // Show the collection as a List.
-    //     if collectionDisplayMode == .asList {
-    //       asList
-    //     }
-    //     // Show the collection as a Grid.
-    //     else if collectionDisplayMode == .asGrid {
-    //       asGrid
-    //     }
-    //   }
-    //   // Overlay the SectionIndexTitles for alphabetical indexing.
-    //   .overlay {
-    //     HStack {
-    //       Spacer()
-    //       // Show the section index titles based on the alphabet.
-    //       SectionIndexTitles(alphabet: alphabet, selectedLetter: $selectedLetter, pageScroller: pageScroller, anchor: resultAnchor)
-    //     }
-    //   }
-    // }
 }
   
   // View for displaying the collection as a List.
