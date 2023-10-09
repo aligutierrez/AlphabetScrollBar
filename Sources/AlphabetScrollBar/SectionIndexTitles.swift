@@ -19,6 +19,7 @@ struct SectionIndexTitles: View {
     VStack {
       ForEach(alphabet, id: \.self) { letter in
         Text(letter)
+          .foregroundColor(Color(hex: 0x6A6E71))                           
           .font(.system(size: 10).bold())
           .frame(width: 30, height: 30)                          
           .background(dragObserver(title: letter, anchor: anchor)) // Background modifier for tracking gestures.
