@@ -98,8 +98,11 @@ public var body: some View {
         cell(element)
       }
     }
-    .introspectTableView { tableView in
-        tableView.separatorStyle = .none
+    .onAppear {
+        UITableView.appearance().separatorStyle = .none
+    }
+    .onDisappear {
+        UITableView.appearance().separatorStyle = .singleLine
     }
     .listStyle(.plain)
   }
