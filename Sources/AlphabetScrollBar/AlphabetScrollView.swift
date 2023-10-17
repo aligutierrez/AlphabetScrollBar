@@ -89,7 +89,7 @@ public var body: some View {
         .foregroundColor(sectionHeaderForegroundColor)
         
         Divider()
-                .background(Color.gray)
+                .background(Color.clear)
                 .frame(height: 2)
                 .padding(.vertical)
       }
@@ -98,7 +98,7 @@ public var body: some View {
         cell(element)
       }
     }
-    .listStyle(SidebarListStyle())
+    .listStyle(.plain)
   }
   
   // View for displaying the collection as a Grid.
