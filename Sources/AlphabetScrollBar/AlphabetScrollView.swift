@@ -98,13 +98,7 @@ public var body: some View {
         cell(element)
       }
     }
-    .onAppear {
-        UITableView.appearance().separatorStyle = .none
-    }
-    .onDisappear {
-        UITableView.appearance().separatorStyle = .singleLine
-    }
-    .listStyle(.plain)
+    .listStyle(SidebarListStyle())
   }
   
   // View for displaying the collection as a Grid.
