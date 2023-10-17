@@ -34,13 +34,15 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
   }
   
   // Extracting the alphabet (section headers) from the grouped collection.
-  private var alphabet: [String] {
-    var a: [String] = []
-    for groupedCollection in groupedCollection {
-      a.append(groupedCollection.0)
-    }
-    return a
-  }
+  private var alphabet: [String] = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ").map { String($0) }
+
+  // {
+  //   var a: [String] = []
+  //   for groupedCollection in groupedCollection {
+  //     a.append(groupedCollection.0)
+  //   }
+  //   return a
+  // }
   
   // State to store the selected letter from the section index.
   @State private var selectedLetter = ""
