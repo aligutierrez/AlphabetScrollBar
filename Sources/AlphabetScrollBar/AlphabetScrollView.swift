@@ -11,27 +11,19 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
   let cell: (Element) -> Cell // The cell view for each element in the collection.
   
   // Initialization of AlphabetizedList.
-    public init(collectionDisplayMode: CollectionDisplayMode,
-                collection: [Element],
-                sectionHeaderFont: Font,
-                sectionHeaderForegroundColor: Color,
-                resultAnchor: UnitPoint,
-                @ViewBuilder cell: @escaping (Element) -> Cell) {
-        if #available(iOS 14.0, *) {
-            // iOS 14 doesn't have extra separators below the list by default.
-        } else {
-            UITableView.appearance().tableFooterView = UIView()
-        }
-        
-        UITableView.appearance().separatorStyle = .none
-        
-        self.collectionDisplayMode = collectionDisplayMode
-        self.collection = collection
-        self.sectionHeaderFont = sectionHeaderFont
-        self.sectionHeaderForegroundColor = sectionHeaderForegroundColor
-        self.cell = cell
-        self.resultAnchor = resultAnchor
-    }
+  public init(collectionDisplayMode: CollectionDisplayMode,
+       collection: [Element],
+       sectionHeaderFont: Font,
+       sectionHeaderForegroundColor: Color,
+       resultAnchor: UnitPoint,
+       @ViewBuilder cell: @escaping (Element) -> Cell) {
+    self.collectionDisplayMode = collectionDisplayMode
+    self.collection = collection
+    self.sectionHeaderFont = sectionHeaderFont
+    self.sectionHeaderForegroundColor = sectionHeaderForegroundColor
+    self.cell = cell
+    self.resultAnchor = resultAnchor
+  }
   
   // Grouping the collection based on the first letter of each item.
   private var groupedCollection: [(String, [Element])] {
@@ -105,6 +97,9 @@ public var body: some View {
       ForEach(section.1) { element in
         cell(element)
       }
+    }
+    .introspectTableView { tableView in
+        tableView.separatorStyle = .none
     }
     .listStyle(.plain)
   }
