@@ -98,7 +98,6 @@ public var body: some View {
         cell(element)
       }
     }
-    .listRowSeparator(.hidden)
     .listStyle(.plain)
   }
   
