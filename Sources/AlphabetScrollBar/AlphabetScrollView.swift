@@ -30,8 +30,12 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
     
     // Grouping the collection based on the first letter of each item.
     private var groupedCollection: [(String, [Element])] {
-        let sortedItems = collection.sorted { $0.alphabetizableName < $1.alphabetizableName }
-        let groupedWithLowercasedKeys = Dictionary(grouping: sortedItems) { String($0.alphabetizableName.lowercased().prefix(1)) }
+        let sortedItems = collection.sorted {
+            $0.alphabetizableName.caseInsensitiveCompare($1.alphabetizableName) == .orderedAscending
+        }
+        let groupedWithLowercasedKeys = Dictionary(grouping: sortedItems) {
+            String($0.alphabetizableName.lowercased().prefix(1))
+        }
         let groupedWithUppercasedKeys = Dictionary(groupedWithLowercasedKeys.map { (key, value) in
             (key.capitalized, value)
         }, uniquingKeysWith: { (first, _) in first })
