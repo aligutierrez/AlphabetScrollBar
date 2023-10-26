@@ -26,6 +26,9 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
         self.cell = cell
         self.resultAnchor = resultAnchor
         self.showIndex = showIndex
+        if #available(iOS 15.0, *) {
+            UIScrollView.appearance().showsVerticalScrollIndicator = false
+        }
     }
     
     // Grouping the collection based on the first letter of each item.
@@ -88,20 +91,36 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
     private var asList: some View {
         List(groupedCollection, id: \.0) { section in
             HStack {
-                Text(section.0)
-                    .id(section.0)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(sectionHeaderFont)
-                    .foregroundColor(sectionHeaderForegroundColor)
+                if #available(iOS 15.0, *) {
+                    Text(section.0)
+                        .id(section.0)
+                        .frame(maxWidth: 12, alignment: .center)
+                        .font(sectionHeaderFont)
+                        .foregroundColor(sectionHeaderForegroundColor)
+                        .listRowSeparator(.hidden)
+                } else {
+                    Text(section.0)
+                        .id(section.0)
+                        .frame(maxWidth: 12, alignment: .leading)
+                        .font(sectionHeaderFont)
+                        .foregroundColor(sectionHeaderForegroundColor)
+                }
                 
-                Divider()
-                    .background(Color.clear)
-                    .frame(height: 2)
-                    .padding(.vertical)
+                
+                Rectangle()
+                    .padding(.leading, 12)
+                    .frame(maxWidth: .infinity, maxHeight: 1)
+                    .foregroundColor(Color(hex: 0xE1E3E6))
+                
             }
-            
+
             ForEach(section.1) { element in
-                cell(element)
+                if #available(iOS 15.0, *) {
+                    cell(element)
+                        .listRowSeparator(.hidden)
+                } else {
+                    cell(element)
+                }
             }
         }
         .listStyle(.plain)
