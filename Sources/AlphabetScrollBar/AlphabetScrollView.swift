@@ -77,7 +77,7 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
                     }
                     if showIndex {
                         SectionIndexTitles(alphabet: alphabet, selectedLetter: $selectedLetter, pageScroller: pageScroller, anchor: resultAnchor)
-                            .frame(maxWidth: 10,
+                            .frame(maxWidth: 15,
                                    maxHeight: .infinity,
                                    alignment: .trailing)
                     }
@@ -94,14 +94,14 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
                 if #available(iOS 15.0, *) {
                     Text(section.0)
                         .id(section.0)
-                        .frame(maxWidth: 12, alignment: .center)
+                        .frame(maxWidth: 15, alignment: .center)
                         .font(sectionHeaderFont)
                         .foregroundColor(sectionHeaderForegroundColor)
                         .listRowSeparator(.hidden)
                 } else {
                     Text(section.0)
                         .id(section.0)
-                        .frame(maxWidth: 12, alignment: .leading)
+                        .frame(maxWidth: 15, alignment: .leading)
                         .font(sectionHeaderFont)
                         .foregroundColor(sectionHeaderForegroundColor)
                 }
