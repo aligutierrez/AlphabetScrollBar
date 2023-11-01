@@ -117,9 +117,13 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
             ForEach(section.1) { element in
                 if #available(iOS 15.0, *) {
                     cell(element)
+                        .padding(.vertical, -4)
+                        .listRowBackground(Color.white)
                         .listRowSeparator(.hidden)
                 } else {
                     cell(element)
+                        .padding(.vertical, -4)
+                        .listRowBackground(Color.white)
                 }
             }
         }
