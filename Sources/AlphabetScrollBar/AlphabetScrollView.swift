@@ -1,5 +1,4 @@
 import SwiftUI
-import Introspect
 
 public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
     
@@ -69,10 +68,6 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
                         // Show the collection as a List.
                         if collectionDisplayMode == .asList {
                             asList
-                                .introspectTableView { tableView in
-                                    tableView.showsVerticalScrollIndicator = false
-                                    tableView.showsHorizontalScrollIndicator = false
-                                }
                         }
                         // Show the collection as a Grid.
                         else if collectionDisplayMode == .asGrid {
