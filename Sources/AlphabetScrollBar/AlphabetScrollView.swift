@@ -1,5 +1,5 @@
 import SwiftUI
-
+import Introspect
 
 public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
     
@@ -69,6 +69,10 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
                         // Show the collection as a List.
                         if collectionDisplayMode == .asList {
                             asList
+                                .introspectTableView { tableView in
+                                    tableView.showsVerticalScrollIndicator = false
+                                    tableView.showsHorizontalScrollIndicator = false
+                                }
                         }
                         // Show the collection as a Grid.
                         else if collectionDisplayMode == .asGrid {
@@ -89,45 +93,38 @@ public struct AlphabetScrollView<Element: Alphabetizable, Cell: View>: View {
     // View for displaying the collection as a List.
     @ViewBuilder
     private var asList: some View {
-        List(groupedCollection, id: \.0) { section in
-            HStack {
-                if #available(iOS 15.0, *) {
-                    Text(section.0)
-                        .id(section.0)
-                        .frame(maxWidth: 15, alignment: .center)
-                        .font(sectionHeaderFont)
-                        .foregroundColor(sectionHeaderForegroundColor)
-                        .listRowSeparator(.hidden)
-                } else {
-                    Text(section.0)
-                        .id(section.0)
-                        .frame(maxWidth: 15, alignment: .leading)
-                        .font(sectionHeaderFont)
-                        .foregroundColor(sectionHeaderForegroundColor)
-                }
-                
-                
-                Rectangle()
-                    .padding(.leading, 12)
-                    .frame(maxWidth: .infinity, maxHeight: 1)
-                    .foregroundColor(Color(hex: 0xE1E3E6))
-                
-            }
-
-            ForEach(section.1) { element in
-                if #available(iOS 15.0, *) {
-                    cell(element)
-                        .padding(.vertical, -4)
-                        .listRowBackground(Color.white)
-                        .listRowSeparator(.hidden)
-                } else {
-                    cell(element)
-                        .padding(.vertical, -4)
-                        .listRowBackground(Color.white)
+        ScrollView(showsIndicators: false) {
+            LazyVStack(alignment: .leading, spacing: 0) {
+                ForEach(groupedCollection, id: \.0) { section in
+                    VStack(alignment: .leading, spacing: 0) {
+                        HStack {
+                            Text(section.0)
+                                .id(section.0)
+                                .frame(maxWidth: 15, alignment: .center)
+                                .font(sectionHeaderFont)
+                                .foregroundColor(sectionHeaderForegroundColor)
+                            
+                            Spacer()
+                            
+                            Rectangle()
+                                .padding(.leading, 12)
+                                .frame(maxHeight: 1)
+                                .foregroundColor(Color(hex: 0xE1E3E6))
+                        }
+                        .padding(.vertical)
+                        
+                        ForEach(section.1) { element in
+                            cell(element)
+                                .padding(.vertical, 8)
+                                .background(Color.white)
+                        }
+                    }
+                    .padding(.horizontal) // Add horizontal padding if needed
                 }
             }
         }
-        .listStyle(.plain)
+
+
     }
     
     // View for displaying the collection as a Grid.
